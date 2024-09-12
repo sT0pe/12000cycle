@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "12000",
-    "slug": "12000",
+    "name": "12000 Cycle",
+    "slug": "12000cycle",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -12,7 +12,8 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.stopexdd.12000cycle"
     },
     "android": {
       "adaptiveIcon": {
@@ -22,6 +23,14 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-font"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "78975a27-af7a-4795-b754-ef55000020f5"
+      }
     }
   }
 }

@@ -1,20 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
+import * as SplashScreen from 'expo-splash-screen';
+import { useFonts } from 'expo-font';
+import { useEffect } from 'react';
+
+import AppNavigation from '@/src/navigation/AppNavigation';
+import '@/src/localization/i18n';
+
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+	const [loaded, error] = useFonts({
+    'Raleway-Regular': require('./assets/fonts/Raleway-Regular.ttf'),
+    'Raleway-Bold': require('./assets/fonts/Raleway-Bold.ttf'),
+    'Raleway-Black': require('./assets/fonts/Raleway-Black.ttf'),
+  });
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+	useEffect(() => {
+    if (loaded || error) {
+      SplashScreen.hideAsync();
+    }
+  }, [loaded, error]);
+
+	if (!loaded && !error) {
+    return null;
+  }
+
+  return <AppNavigation />;
+}
