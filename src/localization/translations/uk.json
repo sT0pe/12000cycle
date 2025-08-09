@@ -1,0 +1,14 @@
+{
+	"routes": {
+		"home": "Головна",
+		"settings": "Налаштування",
+		"language": "Мова",
+		"rules": "Правила Безпеки",
+		"thunderstorm": "Гроза"
+	},
+	"settings": {
+		"preferences": "Вподобання",
+		"language": "Мова",
+		"version": "Версія"
+	}
+}
