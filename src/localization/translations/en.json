@@ -30,7 +30,9 @@
 		"resources": "Resources",
 		"contactUs": "Contact Us",
 		"reportBug": "Report Bug",
-		"version": "App Version"
+		"version": "App Version",
+		"updateAppTitle": "Update Available",
+		"updateAppDescription": "A new version of the app is available. Please update to continue."
 	},
 	"contactUs": {
     "title": "Contact Us",
@@ -96,6 +98,8 @@
 		"add": "Add",
 		"cancel": "Cancel",
 		"delete": "Delete",
+		"later": "Later",
+		"update": "Update",
 		"rulesWarningTitle": "Important!",
 		"rulesWarningText": "All the provided recommendations are general in nature and are intended to ensure your safety in case of an emergency. However, it is important to remember that each situation is unique, and you should act according to the specific circumstances.",
 		"rulesHelpTitle": "Help others if possible.",

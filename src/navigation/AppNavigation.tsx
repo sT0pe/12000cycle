@@ -1,7 +1,7 @@
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
 import { AntDesign, Foundation, MaterialCommunityIcons, Entypo, FontAwesome6, Ionicons } from '@expo/vector-icons';
 import { NavigationContainer, getFocusedRouteNameFromRoute } from '@react-navigation/native';
-import { View, Text, Share, Platform } from 'react-native';
+import { View, Text, Share } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 
@@ -11,6 +11,8 @@ import RulesNavigation from '@/src/navigation/RulesNavigation';
 import KitNavigation from '@/src/navigation/KitNavigation';
 import { Home, Actions, Countries } from '@/src/screens';
 
+import { getAppLink } from '@/src/utils/helpers';
+
 const Drawer = createDrawerNavigator();
 
 const CustomDrawerContent = (props: any) => {
@@ -18,26 +20,11 @@ const CustomDrawerContent = (props: any) => {
 
 	const [isProfileEnabled, setIsProfileEnabled] = useState(true);
 
-	const appLink = Platform.select({
-		ios: 'https://apps.apple.com/app/com.stopexdd.12000cycle',
-		android: 'https://play.google.com/store/apps/details?id=com.twelve_thousand.cycle',
-	});
-
 	const onShare = async () => {
     try {
-      const result = await Share.share({
-        message: t('common.shareText', { appLink }),
+      await Share.share({
+        message: t('common.shareText', { appLink: getAppLink() }),
       });
-
-      if (result.action === Share.sharedAction) {
-        if (result.activityType) {
-          // shared with activity type of result.activityType
-        } else {
-          // shared
-        }
-      } else if (result.action === Share.dismissedAction) {
-        // dismissed
-      }
     } catch (error: any) {}
   };
 

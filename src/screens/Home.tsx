@@ -33,12 +33,6 @@ export default function Home() {
 					<ThemedText type="link">{t('home.forum')}</ThemedText>
 				</TouchableOpacity>.
 			</Paragraph>
-
-			<Poll
-				id="home"
-				question="home.pole-1"
-				options={['common.yes', 'common.no']}
-			/>
 		</ParallaxScrollView>
 	);
 }

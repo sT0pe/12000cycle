@@ -13,11 +13,18 @@ const languageDetectorPlugin: any = {
 	init: () => {},
 	detect: async function (callback: (lang: string) => void) {
 		try {
-			const deviceLanguage =
-				Platform.OS === 'ios'
-					? NativeModules.SettingsManager?.settings?.AppleLanguages[0] ||
-						NativeModules.SettingsManager?.settings?.AppleLocale
-					: NativeModules.I18nManager?.localeIdentifier;
+			let deviceLanguage = null;
+
+			if (Platform.OS === 'ios') {
+				const constants = NativeModules.SettingsManager.getConstants();
+
+				deviceLanguage = NativeModules.SettingsManager?.settings?.AppleLanguages[0] ||
+					NativeModules.SettingsManager?.settings?.AppleLocale ||
+					constants?.settings?.AppleLanguages[0] ||
+					constants?.settings?.AppleLocale;
+			} else {
+				deviceLanguage = NativeModules.I18nManager?.localeIdentifier;
+			}
 
 			const defaultLanguage = (deviceLanguage || 'en-US').split('-')?.[0];
 
@@ -33,16 +40,16 @@ const languageDetectorPlugin: any = {
 	},
 };
 
-export const supportedLngs = ['en', 'ru'];
+export const supportedLngs = ['en', 'ru', 'uk'];
 
 i18n.use(initReactI18next).use(languageDetectorPlugin).init({
 	resources: {
 		en: {
 			translation: langs.en,
 		},
-		// uk: {
-		// 	translation: langs.uk,
-		// },
+		uk: {
+			translation: langs.uk,
+		},
 		ru: {
 			translation: langs.ru,
 		},
